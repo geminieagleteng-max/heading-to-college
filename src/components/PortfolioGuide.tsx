@@ -3,9 +3,9 @@
 import React, { useState } from 'react';
 import { 
   FileText, BookOpen, AlertTriangle, Copy, Check, Info, 
-  Calendar, Code, Award, BookOpenCheck, ArrowRight, 
-  Layers, Lightbulb, RefreshCw, Eye, Sparkles, CheckSquare, ShieldCheck,
-  ChevronRight, X, ExternalLink
+  Calendar, Code, Award, BookOpenCheck, 
+  Layers, Lightbulb, Sparkles, CheckSquare, ShieldCheck,
+  X, ExternalLink
 } from 'lucide-react';
 
 interface CodeDetail {
@@ -326,7 +326,7 @@ ${usedTools.map((t, idx) => `${idx + 1}. ${t}`).join('\n')}
             return (
               <button
                 key={tab.id}
-                onClick={() => setActiveSubTab(tab.id as any)}
+                onClick={() => setActiveSubTab(tab.id as 'overview' | 'bar' | 'multiple' | 'statement' | 'ai' | 'exam')}
                 className={`flex items-center gap-1.5 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all duration-200 cursor-pointer ${
                   activeSubTab === tab.id
                     ? 'bg-gradient-to-r from-indigo-500 to-purple-600 text-white shadow-lg shadow-indigo-500/20'
@@ -926,17 +926,17 @@ ${usedTools.map((t, idx) => `${idx + 1}. ${t}`).join('\n')}
                 <div>
                   <h4 className="text-xs font-bold text-indigo-400 uppercase tracking-wider mb-3">誠信合規自檢表</h4>
                   <div className="space-y-2">
-                    {[
+                    {([
                       { id: 'originalText', label: '我的備審自述（N、O、P、Q）文字皆為親自撰寫，無 AI 代寫。' },
                       { id: 'originalCode', label: '我提交的專案程式碼與實作均為本人親自編寫與測試。' },
                       { id: 'noFaking', label: '我沒有透過 AI 虛構任何不曾參與的活動或經歷。' },
                       { id: 'declaredUse', label: '我願意在備審資料中主動誠實申報 AI 使用工具與範圍。' },
                       { id: 'keptPrompts', label: '我已妥善保存原始開發手稿及與 AI 交互的 Prompt 紀錄以防面試抽查。' }
-                    ].map((item) => (
+                    ] as const).map((item) => (
                       <label key={item.id} className="flex items-start gap-2.5 p-2 rounded-lg hover:bg-slate-900/50 cursor-pointer transition-colors">
                         <input
                           type="checkbox"
-                          checked={(aiChecks as any)[item.id]}
+                          checked={aiChecks[item.id]}
                           onChange={(e) => setAiChecks({ ...aiChecks, [item.id]: e.target.checked })}
                           className="mt-1 h-3.5 w-3.5 rounded border-slate-800 text-indigo-600 focus:ring-indigo-500 bg-slate-950"
                         />
@@ -949,15 +949,15 @@ ${usedTools.map((t, idx) => `${idx + 1}. ${t}`).join('\n')}
                 <div>
                   <h4 className="text-xs font-bold text-indigo-400 uppercase tracking-wider mb-3">申報使用 AI 的協作範圍</h4>
                   <div className="space-y-2">
-                    {[
+                    {([
                       { id: 'polish', label: '拼字檢查與文句修辭語言潤飾' },
                       { id: 'translate', label: '外文文獻閱讀之翻譯輔助' },
                       { id: 'outline', label: '研究筆記大綱與邏輯整理' }
-                    ].map((item) => (
+                    ] as const).map((item) => (
                       <label key={item.id} className="flex items-center gap-2.5 p-2 rounded-lg hover:bg-slate-900/50 cursor-pointer transition-colors">
                         <input
                           type="checkbox"
-                          checked={(aiTools as any)[item.id]}
+                          checked={aiTools[item.id]}
                           onChange={(e) => setAiTools({ ...aiTools, [item.id]: e.target.checked })}
                           className="h-3.5 w-3.5 rounded border-slate-800 text-indigo-600 focus:ring-indigo-500 bg-slate-950"
                         />
