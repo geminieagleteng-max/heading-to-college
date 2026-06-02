@@ -220,6 +220,27 @@ export default function ScoreAnalyzer() {
         </p>
       </div>
 
+      {/* ⚠️ 模擬數據提示橫幅 */}
+      <div className="bg-slate-900/60 border border-amber-500/20 rounded-2xl p-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 animate-fade-in">
+        <div className="flex items-start gap-3">
+          <AlertTriangle className="h-5 w-5 text-amber-500 shrink-0 mt-0.5" />
+          <div>
+            <h4 className="text-xs font-bold text-amber-400">系統重要提示：本平台學測數據為「展示用模擬數據」</h4>
+            <p className="text-2xs text-slate-400 mt-1 leading-relaxed">
+              系統內 15 所頂大之各學科系分數為常模模擬設定，並非最新學年度之官方真實篩選級分。真實落點數據請務必參閱官方簡章。
+            </p>
+          </div>
+        </div>
+        <a
+          href="https://www.cac.edu.tw/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="shrink-0 text-2xs font-bold text-amber-400 hover:text-amber-300 border border-amber-500/30 hover:border-amber-400 px-3 py-1.5 rounded-xl bg-amber-500/5 hover:bg-amber-500/10 transition-all flex items-center gap-1 cursor-pointer"
+        >
+          前往大考甄選委會官網 ➔
+        </a>
+      </div>
+
       {/* 主內容區 */}
       <div className="grid lg:grid-cols-3 gap-8 items-start">
         
